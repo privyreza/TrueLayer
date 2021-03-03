@@ -1,9 +1,9 @@
 {
-  "name": "alancole/true-layer",
+  "name": "privyreza/true-layer",
   "description": "A simple SDK for working with TrueLayer APIs",
   "type": "library",
   "require": {
-    "guzzlehttp/guzzle": "^6.3",
+    "guzzlehttp/guzzle": "^7.0",
     "ext-json": "*",
     "teapot/status-code": "^1.1",
     "guzzlehttp/streams": "^3.0"
