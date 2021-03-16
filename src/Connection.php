@@ -19,9 +19,9 @@ class Connection
      *
      * @const mixed
      */
-    const AUTH_PATH = "https://auth.truelayer.com";
-    const API_PATH = "https://api.truelayer.com";
-    const STATUS_URI = "https://status-api.truelayer.com/api/v1/data/status";
+    const AUTH_PATH = env('TL_AUTH_URL');
+    const API_PATH = env('TL_API_URL');
+    const STATUS_URI = env('TL_STATUS_URL');
     const DATA_PATH = "data";
     const API_VERSION = "v1";
 
