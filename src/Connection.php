@@ -19,9 +19,9 @@ class Connection
      *
      * @const mixed
      */
-    const AUTH_PATH = env('TL_AUTH_URL');
-    const API_PATH = env('TL_API_URL');
-    const STATUS_URI = env('TL_STATUS_URL');
+    public $auth_url;
+    public $api_url;
+    public $status_url;
     const DATA_PATH = "data";
     const API_VERSION = "v1";
 
@@ -76,6 +76,9 @@ class Connection
         $this->state = $state;
         $this->data_resolver = new $data_resolver();
         $this->provider = $provider;
+        $this->auth_url = env('TL_AUTH_URL');
+        $this->api_url = env('TL_API_URL');
+        $this->status_url  = env('TL_STATUS_URL');
     }
 
     /**
@@ -115,7 +118,7 @@ class Connection
      */
     public function getTokenUrl()
     {
-        return self::AUTH_PATH . "/connect/token";
+        return $this->auth_url . "/connect/token";
     }
 
     /**
@@ -136,7 +139,7 @@ class Connection
      */
     public function getUrl($path = "/")
     {
-        return self::API_PATH . $path;
+        return $this->api_url . $path;
     }
 
     /**
@@ -202,7 +205,7 @@ class Connection
      */
     public function getAuthorizationLink()
     {
-        $url = self::AUTH_PATH . "/" .
+        $url = $this->auth_url . "/" .
             "?response_type=code" .
             "&client_id=" . $this->getClientId() .
             "&nonce=" . $this->getNonce() .
@@ -381,7 +384,7 @@ class Connection
 
         $result = $this->connection->request(
             'GET',
-            self::STATUS_URI,
+            $this->status_url,
             [
                 'query' => array_filter([
                     'from' => $from->format(DateTime::ISO8601),
